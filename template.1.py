@@ -5,29 +5,21 @@ import json,sys,argparse
 parser = argparse.ArgumentParser(description='Template for python script managing JSON as input/output format')
 
 group = parser.add_mutually_exclusive_group()
-group.add_argument('--input-file', '-i',  type=str, help='Input file name containing a valid JSON.', default=sys.stdin)
-group.add_argument('json',    nargs='?',  type=str, help='Input string containing a valid JSON.' , default=sys.stdin)
-parser.add_argument('--output-file', '-o',type=str, help='Output file name.')
+group.add_argument('--input-file', '-i', type=argparse.FileType('r'), default=sys.stdin,
+                   help='Input file name containing a valid JSON.')
+group.add_argument('json', nargs='?', type=str,
+                   help='Input string containing a valid JSON.')
+parser.add_argument('--output-file', '-o', type=argparse.FileType('w'), default=sys.stdout,
+                    help='Output file name.')
 
 args = parser.parse_args()
 
-if not sys.stdin.isatty():
-    data = sys.stdin.read()
-else:
-#    args = parser.parse_args()
-    if args.input_file :
-        data=open(args.input_file).read()
-    elif args.json :
-        data=args.json
+# if not sys.stdin.isatty():
+#     data = sys.stdin.read()
 
+data = args.json or args.input_file.read()
 
-datain=json.loads(data)
-        
-dataout=json.dumps(datain, indent=2)
+datain = json.loads(data)
 
-if args.output_file :
-        output_file=open(args.output_file, 'w')
-        output_file.write(dataout+'\n')
-        output_file.close()
-else:
-    print (dataout)
+dataout = json.dumps(datain, indent=2)
+args.output_file.write(dataout+'\n')
