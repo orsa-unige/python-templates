@@ -1,0 +1,12 @@
+[
+    {
+        "names": ["J.J.", "April"],
+        "years": [25, 29],
+        "éèèèééèè":"°"
+    },
+    {
+        "names": false
+    },
+    null,
+    [true,123,"asd"]
+]
