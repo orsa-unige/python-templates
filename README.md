@@ -23,3 +23,4 @@ Python templates to manage json input output with exception handling and script 
     
     ./template.1.py                                   # not ok or decide if empty json (array? object? null? error json?)
 ```
+
