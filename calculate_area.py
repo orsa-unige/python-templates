@@ -3,6 +3,8 @@
 
 import template as t
 
+t.descr("Calculate the area given {x,y} or a list of [{x,y}...{x,y}]")
+
 def main(*args):
 
     inp=t.input()

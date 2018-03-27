@@ -7,8 +7,8 @@ import numpy as np
 import json
 
 def main(*args):
-    
-    inp=json.loads(i.main([1,2,3]))
+
+    inp=json.loads(i.main())
 
     if isinstance(inp,dict) :
         try:
@@ -28,8 +28,6 @@ def main(*args):
         
     return(t.output(out))
 
-
-    
 if __name__ == "__main__": # i.e. run directly
     import sys
     try:

@@ -4,9 +4,9 @@
 import json,sys,argparse
 
 def main():
-    
-    parser = argparse.ArgumentParser(description='Template for python script managing JSON as input/output format. \
-                                                  A JSON file can be [], {}, "string", 123, true, false, null.')
+
+    d=descr()
+    parser = argparse.ArgumentParser(description=d)
 
     infile=['-i','--input-file']
     kwinfile={'type':argparse.FileType('r'), 'help':'Input file name containing a valid JSON. Default and priority: standard input.'}
@@ -68,6 +68,19 @@ def output(*datain) :
     args.output_file.write(dataout+'\n')
 
     return(dataout)
-    
+
+
+def descr(*descr) :
+
+    if not descr:
+        descr="""Template for python script managing JSON as input/output format.
+                 A JSON file can be [], {}, \"string\", 123, true, false, null.
+                 To edit this description in your script, set it as: >>>
+                   import template as t;
+                   t.descr(\"Your custom description\")."""
+
+    return descr
+
+
 if __name__ == "__main__":
     main()
