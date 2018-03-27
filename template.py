@@ -29,6 +29,15 @@ def main():
     
     args = parser.parse_args()
 
+    return(args)
+    
+def input(*data):
+    args=main()
+    
+    # if data :
+    #     datain=data[0]
+        
+    # else :
     if not sys.stdin.isatty(): # pipe
         data=sys.stdin.read()
     else:  # no pipe
@@ -36,16 +45,29 @@ def main():
             data='null'
         else :
             data = args.json or args.input_file.read()
-
+            
     try:
         datain = json.loads(data)
     except:
-        datain = {'script_name':(sys.argv[0]), 'error': 'Input is not a valid JSON.'}
+        output({'script_name':(sys.argv[0]),
+                'error': 'Input is not a valid JSON.',
+                'data': data})
+        sys.exit(0)
         
-    is_pretty = 2 if args.pretty else None
+    return(datain)
+
+
+def output(*datain) :
+    args=main()
+    if datain :
+        datain=datain[0]
     
-    dataout = json.dumps(datain, indent=is_pretty, ensure_ascii=False)
+    indent = 2 if args.pretty else None
+    
+    dataout = json.dumps(datain, indent=indent, ensure_ascii=False)
     args.output_file.write(dataout+'\n')
+
+    return(dataout)
     
 if __name__ == "__main__":
     main()
