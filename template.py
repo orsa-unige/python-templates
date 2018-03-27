@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import json,sys,argparse
+import json,sys,argparse,os
 
 def main():
     
@@ -65,7 +65,7 @@ def output(*datain) :
     indent = 2 if args.pretty else None
     
     dataout = json.dumps(datain, indent=indent, ensure_ascii=False)
-    args.output_file.write(dataout+'\n')
+    args.output_file.write(dataout+os.linesep)
 
     return(dataout)
     
