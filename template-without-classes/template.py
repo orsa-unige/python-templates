@@ -3,22 +3,31 @@
 
 import json,sys,argparse
 
-def main():
 
-    d=descr()
-    parser = argparse.ArgumentParser(description=d)
+def main() :
+    parser = argparse.ArgumentParser(
+        description='''Template for python script managing JSON as input/output format.
+        A JSON file can be [], {}, "string", 123, true, false, null.''')
 
     infile=['-i','--input-file']
-    kwinfile={'type':argparse.FileType('r'), 'help':'Input file name containing a valid JSON. Default and priority: standard input.'}
+    kwinfile={'type':argparse.FileType('r'),
+              'help':'''Input file name containing a valid JSON. 
+                        Default and priority: standard input.'''}
 
     jstring=['-j','--json']
-    kwjstring={'type':str,  'nargs':'?', 'help':'Input file name containing a valid JSON. Default and priority: standard input.'}
+    kwjstring={'type':str,
+               'nargs':'?',
+               'help':'''Input file name containing a valid JSON. 
+                         Default and priority: standard input.'''}
 
     outfile=['-o','--output-file']
-    kwoutfile={'type':argparse.FileType('w'), 'help':'Output file name. Default: standard output.', 'default':sys.stdout}
+    kwoutfile={'type':argparse.FileType('w'),
+               'help':'Output file name. Default: standard output.',
+               'default':sys.stdout}
 
     pretty=['-p','--pretty']
-    kwpretty={'action':'store_true', 'help':'If set, JSON output  will be formatted in pretty print.'}
+    kwpretty={'action':'store_true',
+              'help':'If set, JSON output  will be formatted in pretty print.'}
     
     group = parser.add_mutually_exclusive_group()
 
@@ -30,14 +39,12 @@ def main():
     args = parser.parse_args()
 
     return(args)
-    
+
+
+'''Takes input either from stdin, string argument, or file'''    
 def input(*data):
     args=main()
-    
-    # if data :
-    #     datain=data[0]
-        
-    # else :
+
     if not sys.stdin.isatty(): # pipe
         data=sys.stdin.read()
     else:  # no pipe
@@ -57,6 +64,8 @@ def input(*data):
     return(datain)
 
 
+
+'''Gives output data either to stdout, or writing in a file'''    
 def output(*datain) :
     args=main()
     if datain :
@@ -69,17 +78,6 @@ def output(*datain) :
 
     return(dataout)
 
-
-def descr(*descr) :
-
-    if not descr:
-        descr="""Template for python script managing JSON as input/output format.
-                 A JSON file can be [], {}, \"string\", 123, true, false, null.
-                 To edit this description in your script, set it as: >>>
-                   import template as t;
-                   t.descr(\"Your custom description\")."""
-
-    return descr
 
 
 if __name__ == "__main__":

@@ -3,29 +3,39 @@
 
 import template as t
 
-t.descr("Calculate the area given {x,y} or a list of [{x,y}...{x,y}]")
 
-def main(*args):
 
+'''Calculates an area given an object containing {x:number,y:number} or a list of
+objects [{x,y},...,{x,y}]'''
+def area() :
     inp=t.input()
 
     if isinstance(inp,dict) :
         try:
             out={'area' : inp['x'] * inp['y'] }
         except:
-            out={'error' : "missing x and/or y value"}
+            out={'error' : 'missing x,y values'}
 
     elif isinstance(inp,list) :
         out=[]
-        for o in inp :
-            if (o['x']  and o['y']) is not None :
-                out.append({'area' : o['x'] * o['y'] })
+        for i in inp :
+            if (i['x']  and i['y']) is not None :
+                out.append({'area' : i['x'] * i['y'] })
     else :
         out={
             'error' : "Need either {x,y} or [{x,y},...,{x,y}]",
-            'data:' : inp}
+            'data:' : inp
+        }
+
+    return out
         
-    return(t.output(out))
+
+
+def main(*args):
+    o=area()    
+    t.output(o)
+
+
     
 if __name__ == "__main__": #i.e. run directly
     import sys
