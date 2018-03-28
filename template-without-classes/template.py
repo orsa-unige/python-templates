@@ -3,7 +3,6 @@
 
 import json,sys,argparse
 
-
 def main() :
     parser = argparse.ArgumentParser(
         description='''Template for python script managing JSON as input/output format.
@@ -40,7 +39,6 @@ def main() :
 
     return(args)
 
-
 '''Takes input either from stdin, string argument, or file'''    
 def input(*data):
     args=main()
@@ -63,8 +61,6 @@ def input(*data):
         
     return(datain)
 
-
-
 '''Gives output data either to stdout, or writing in a file'''    
 def output(*datain) :
     args=main()
@@ -77,8 +73,6 @@ def output(*datain) :
     args.output_file.write(dataout+'\n')
 
     return(dataout)
-
-
 
 if __name__ == "__main__":
     main()

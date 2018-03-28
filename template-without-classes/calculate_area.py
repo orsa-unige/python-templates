@@ -3,8 +3,6 @@
 
 import template as t
 
-
-
 '''Calculates an area given an object containing {x:number,y:number} or a list of
 objects [{x,y},...,{x,y}]'''
 def area() :
@@ -28,18 +26,10 @@ def area() :
         }
 
     return out
-        
 
-
-def main(*args):
+def main():
     o=area()    
     t.output(o)
-
-
     
 if __name__ == "__main__": #i.e. run directly
-    import sys
-    try:
-        main(sys.argv[1:])
-    except IOError:
-        handle_error()
+    main()
