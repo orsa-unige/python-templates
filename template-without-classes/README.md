@@ -3,7 +3,7 @@
 This example contains three files: 
   - a template, 
   - a first  script importing the template,
-  - a second script importing the tamplate and the first script.
+  - a second script importing the template and the first script.
 
 Thanks to the template, all have the same capabilities: they can manage input and output in different ways and they can used both as a module and as a command line script.
 
