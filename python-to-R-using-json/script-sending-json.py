@@ -3,7 +3,7 @@
 
 import subprocess,json
 
-cmd = ['Rscript', './2.R']
+cmd = ['Rscript', './script-receiving-json.R']
 
 args = {'a':999.99,
         'b': [1,2,3],
