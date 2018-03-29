@@ -4,11 +4,10 @@
 import template as t
 
 
-
 '''Calculates an area given an object containing {x:number,y:number} or a list of
 objects [{x,y},...,{x,y}]'''
-def area() :
-    inp=t.input()
+def area(args) :
+    inp=t.input(args)
 
     if isinstance(inp,dict) :
         try:
@@ -31,15 +30,12 @@ def area() :
         
 
 
-def main(*args):
-    o=area()    
-    t.output(o)
+def main():
+    args=t.parser()
+    o=area(args)    
+    t.output(args,o)
 
 
     
 if __name__ == "__main__": #i.e. run directly
-    import sys
-    try:
-        main(sys.argv[1:])
-    except IOError:
-        handle_error()
+    main()

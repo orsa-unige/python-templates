@@ -7,9 +7,9 @@ import numpy as np
 
 '''Calculates the sqrt of an area given an object containing {area:number} or a list of
 objects [{area:number},...,{area:number}]'''
-def sqrt() :
+def sqrt(args) :
     
-    inp=calc.area()
+    inp=calc.area(args)
 
     if isinstance(inp,dict) :
         try:
@@ -31,15 +31,12 @@ def sqrt() :
 
 
 
-def main(*args):
-    o=sqrt()        
-    t.output(o)
+def main():
+    args=t.parser()
+    o=sqrt(args)        
+    t.output(args,o)
 
 
     
 if __name__ == "__main__": # i.e. run directly
-    import sys
-    try:
-        main(sys.argv[1:])
-    except IOError:
-        handle_error()
+    main()

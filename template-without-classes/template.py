@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import json,sys,argparse
+import json,sys,os
+import argparse
 
-
-def main() :
+def parser(argv=None) :
     parser = argparse.ArgumentParser(
         description='''Template for python script managing JSON as input/output format.
         A JSON file can be [], {}, "string", 123, true, false, null.''')
@@ -36,14 +36,14 @@ def main() :
     parser.add_argument(*outfile, **kwoutfile)
     parser.add_argument(*pretty, **kwpretty)
     
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     return(args)
 
 
 '''Takes input either from stdin, string argument, or file'''    
-def input(*data):
-    args=main()
+def input(args, *data):
+#    args=main()
 
     if not sys.stdin.isatty(): # pipe
         data=sys.stdin.read()
@@ -66,19 +66,26 @@ def input(*data):
 
 
 '''Gives output data either to stdout, or writing in a file'''    
-def output(*datain) :
-    args=main()
+def output(args, *datain) :
+#    args=main()
+
     if datain :
         datain=datain[0]
     
     indent = 2 if args.pretty else None
     
     dataout = json.dumps(datain, indent=indent, ensure_ascii=False)
-    args.output_file.write(dataout+'\n')
+    args.output_file.write(dataout+os.linesep)
 
     return(dataout)
 
 
+def main(args):
+    datain = input(args)
+    dataout = output(args, datain)
+    return dataout            
+
 
 if __name__ == "__main__":
-    main()
+    args = parser()
+    main(args)
