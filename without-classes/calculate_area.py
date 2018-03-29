@@ -27,7 +27,6 @@ def area(args) :
 
     return out        
 
-
 def main():
     args=t.parser()
     o=area(args)    

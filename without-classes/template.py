@@ -4,7 +4,8 @@
 import json,sys,os
 import argparse
 
-def parser(argv=None) :
+
+def main() :
     parser = argparse.ArgumentParser(
         description='''Template for python script managing JSON as input/output format.
         A JSON file can be [], {}, "string", 123, true, false, null.''')
