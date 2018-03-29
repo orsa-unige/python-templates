@@ -5,7 +5,7 @@ import json,sys,os
 import argparse
 
 
-def main() :
+def parser() :
     parser = argparse.ArgumentParser(
         description='''Template for python script managing JSON as input/output format.
         A JSON file can be [], {}, "string", 123, true, false, null.''')
@@ -37,7 +37,7 @@ def main() :
     parser.add_argument(*outfile, **kwoutfile)
     parser.add_argument(*pretty, **kwpretty)
     
-    args = parser.parse_args(argv)
+    args = parser.parse_args()
 
     return(args)
 
