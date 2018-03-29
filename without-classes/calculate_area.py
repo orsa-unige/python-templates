@@ -3,7 +3,6 @@
 
 import template as t
 
-
 '''Calculates an area given an object containing {x:number,y:number} or a list of
 objects [{x,y},...,{x,y}]'''
 def area(args) :
@@ -26,15 +25,13 @@ def area(args) :
             'data:' : inp
         }
 
-    return out
-        
+    return out        
 
 
 def main():
     args=t.parser()
     o=area(args)    
     t.output(args,o)
-
 
     
 if __name__ == "__main__": #i.e. run directly

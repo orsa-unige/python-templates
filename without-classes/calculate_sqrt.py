@@ -30,13 +30,10 @@ def sqrt(args) :
     return out
 
 
-
 def main():
     args=t.parser()
     o=sqrt(args)        
     t.output(args,o)
-
-
     
 if __name__ == "__main__": # i.e. run directly
     main()
