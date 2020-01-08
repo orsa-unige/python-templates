@@ -4,7 +4,7 @@
 import json,sys,argparse,os
 
 
-class orsa():
+class wrap():
     
     def __init__(self):
         self.title = 'Template for python script managing JSON as input/output format. '
@@ -41,7 +41,7 @@ class orsa():
         
         group.add_argument(*infile, **kwinfile)
         group.add_argument(*jstring, **kwjstring)
-
+        
         parser.add_argument(*outfile, **kwoutfile)
         parser.add_argument(*pretty, **kwpretty)
         
@@ -81,7 +81,7 @@ class orsa():
     
 ''' test if running as script '''
 def main():
-    ors = orsa()
+    ors = wrap()
     i = ors.input()
     ors.output(i)
 

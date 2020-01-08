@@ -1,28 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from template import orsa
-import calculate_area as calc # importing my module!!! 
+from template import wrap
+import calculate_area as calc # importing my module!!!
 
-o = orsa()
-
-'''Calculates the sqrt of an area given an object containing
-{area:number} or a list of objects [{area:number},...,{area:number}]
+'''Calculates the square of an area given an object containing {x:number,y:number}
+or a list of objects [{x,y},...,{x,y}].
 '''
-def sqrt():
-    
-    inp=calc.area()
+def sqrt(inp):
 
-    if isinstance(inp,dict) :
+    inp=calc.area(inp) # it executes x*y and stores the result in "area"
+
+    if isinstance(inp,dict) : # is it a python dict (~json object) type?
         try:
             out={'sqrt of area' : inp['area']**0.5 }
         except:
             out={'error' : 'missing x,y values'}
 
-    elif isinstance(inp,list) :
+    elif isinstance(inp,list) : # is it a python list (~json array) type?
         out=[]
         for i in inp :
-            out.append({'sqrt of area' : i['area']**0.5 })
+            if (i['area']) is not None :
+                out.append({'sqrt of area' : i['area']**0.5 })
     else :
         out={
             'error' : 'Need either {area:...} or [{area},...,{area}]',
@@ -31,10 +30,13 @@ def sqrt():
 
     return out
 
-    
 def main():
-    s=sqrt()
+
+    o = wrap()
+
+    args=o.input()
+    s=sqrt(args)
     o.output(s)
-    
-if __name__ == "__main__":
+
+if __name__ == "__main__": #i.e. run directly
     main()
